@@ -35,10 +35,11 @@ if uploaded_file is not None:
 
     # Download button for the compressed image
     compressed_image_path = "compressed_image.jpg"
-    compressed_image_bytes = Image.fromarray(compressed_image).convert("RGB").save(BytesIO(), format="JPEG").getvalue()
+    compressed_image_bytes = BytesIO()
+    Image.fromarray(compressed_image).convert("RGB").save(compressed_image_bytes, format="JPEG")
     st.download_button(
         label="Download Compressed Image",
-        data=compressed_image_bytes,
+        data=compressed_image_bytes.getvalue(),
         file_name=compressed_image_path,
         mime="image/jpeg"
     )

@@ -31,3 +31,12 @@ if uploaded_file is not None:
     # Display the original and compressed images
     st.image(image, caption='Original Image', use_column_width=True)
     st.image(compressed_image, caption='Compressed Image', use_column_width=True)
+
+    # Download button for the compressed image
+    compressed_image_path = "compressed_image.jpg"
+    st.download_button(
+        label="Download Compressed Image",
+        data=compressed_image,
+        file_name=compressed_image_path,
+        mime="image/jpeg"
+    )

@@ -4,7 +4,7 @@ from PIL import Image
 import joblib
 
 # Load the trained model
-model = joblib.load('image_compression_model.joblib')
+model = joblib.load('image.joblib')
 
 # Title
 st.title('Image Compression')

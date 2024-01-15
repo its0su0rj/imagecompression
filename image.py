@@ -3,6 +3,7 @@ from sklearn.cluster import KMeans
 from PIL import Image
 import joblib
 import streamlit as st
+from io import BytesIO
 
 # Load the trained model
 model = joblib.load('image.joblib')
@@ -34,9 +35,10 @@ if uploaded_file is not None:
 
     # Download button for the compressed image
     compressed_image_path = "compressed_image.jpg"
+    compressed_image_bytes = Image.fromarray(compressed_image).convert("RGB").save(BytesIO(), format="JPEG").getvalue()
     st.download_button(
         label="Download Compressed Image",
-        data=compressed_image,
+        data=compressed_image_bytes,
         file_name=compressed_image_path,
         mime="image/jpeg"
     )
